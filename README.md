@@ -13,13 +13,13 @@ Released April 2014
 Cycles Per Instruction - The Kernel Module Edition
 --------------------------------------------------
 
-Welcome to the most unnecessarily complicated netcat album release format yet. 
+Welcome an unnecessarily complicated netcat album release format. 
 
-In this repository, you will be able to compile your own kernel module, create a 
-`/dev/netcat` device and pipe its output into an audio player.
+In this repository, you will be able to compile a standalone
+executable, run it and pipe its output into an audio player.
 
 ```
-cat /dev/netcat | ogg123 -
+./netcat play | ogg123 -
 ```
 
 This repository contains the album's track data in source files, that came from `.ogg` files that were 
@@ -37,7 +37,7 @@ and test it out, but after a day toiling in the bitmines, who has the energy?
 First, install some dependencies:
 
 ```
-sudo apt-get install build-essential vorbis-tools linux-headers-$(uname -r)
+sudo apt-get install build-essential vorbis-tools
 ```
 
 Check out the repo:
@@ -58,35 +58,27 @@ Building will take a long time.  Hang with it.  Building also requires several g
 Listening
 ---------
 
-After you build, run you need to load the module and see if it is working, so you can run:
+After you build, run like so:
 
 ```
-sudo insmod netcat.ko
-dmesg
+./netcat
 ```
 
-You should see output like the following from `dmesg`:
+You should see output like the following:
 
 ```
 [ 2606.528153] [netcat]: netcat - Cycles Per Instruction - Kernel Module Edition - 2014
 [ 2606.528153] [netcat]: netcat is Brandon Lucia, Andrew Olmstead, and David Balatero
-[ 2606.528153] [netcat]: Run 'sudo mknod /dev/netcat c 250 0' to setup the device.
-[ 2606.528153] [netcat]: 'cat /dev/netcat | ogg123 -' to play.
-```
-
-Your `mknod` command will be slightly different, as the OS will assign you a different number every time. Run this command:
-
-```
-mknod /dev/netcat c <your number> 0
+[ 2606.528153] [netcat]: './netcat play | ogg123 -' to play.
 ```
 
 Finally, put on some headphones, and run:
 
 ```
-cat /dev/netcat | ogg123 -
+./netcat play | ogg123 -
 ```
 
-Track information will show up in the output of `dmesg`:
+Track information will show up in the output:
 
 ```
 [  612.411529] [netcat]: Now playing track 2 - The Internet is an Apt Motherfucker

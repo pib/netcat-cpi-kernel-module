@@ -1,7 +1,9 @@
-obj-m += netcat.o
-EXTRA_CFLAGS=-I$(PWD)/tracks 
-all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+CFLAGS=-I$(PWD)/tracks 
+
+all: netcat
+
+netcat: netcat.c
+	gcc $(CFLAGS) netcat.c -o netcat
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	rm netcat
